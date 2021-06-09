@@ -1,41 +1,37 @@
-let accountBalance = 0;
-let transactionHistory = [];
+class bankAccount {
+
+    constructor() {
+        this.accountBalance = 0;
+        this.transactionHistory = [];
+    }
+    deposit(amount) {
+        this.accountBalance += amount;
+        this.transactionHistory.push(new Date().toLocaleDateString('en-GB') + " || " + amount + " || " + this.accountBalance);
+
+
+    }
+    withdraw(amount) {
+        this.accountBalance -= amount;
+        this.transactionHistory.push(new Date().toLocaleDateString('en-GB') + " || -" + amount + " || " + this.accountBalance);
+
+    }
+    printStatement() {
+        console.log("Date || Amount || Balance")
+        for (let i = 0; i < this.transactionHistory.length; i++) {
+            console.log(this.transactionHistory[i]);
+        }
+    }
+    queryBalance() {
+        return this.accountBalance;
+    }
+}
 
 
 function sum(a, b) {
     return a + b;
 }
 
-function deposit(amount) {
-    accountBalance += amount;
-    transactionHistory.push(new Date().toLocaleDateString('en-GB') + " || " + amount + " || " + accountBalance);
-
-}
-
-function withdraw(amount) {
-    accountBalance -= amount;
-    transactionHistory.push(new Date().toLocaleDateString('en-GB') + " || -" + amount + " || " + accountBalance);
-
-}
-
-function printStatement() {
-    console.log("Date || Amount || Balance")
-    for (let i = 0; i < transactionHistory.length; i++) {
-        console.log(transactionHistory[i]);
-    }
-}
-
-function queryBalance() {
-    return accountBalance;
-}
-
-function resetBalance() {
-    accountBalance = 0;
-}
-
-
-
 
 module.exports = {
-    sum, deposit, withdraw, printStatement, queryBalance, resetBalance
+    sum, bankAccount
 };
